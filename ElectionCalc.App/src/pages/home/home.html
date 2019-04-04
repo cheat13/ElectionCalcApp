@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Election Calculation 2019
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div>
+    <ion-segment [(ngModel)]="features" mode="ios">
+      <ion-segment-button value="home">
+        Home
+      </ion-segment-button>
+      <ion-segment-button value="compare">
+        Compare
+      </ion-segment-button>
+      <ion-segment-button value="distribute">
+        Distribution
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="features">
+    <ion-list *ngSwitchCase="'home'">
+      <home></home>
+    </ion-list>
+    <ion-list *ngSwitchCase="'compare'">
+      <compare></compare>>
+    </ion-list>
+    <ion-list *ngSwitchCase="'distribute'">
+      <distribution></distribution>>
+    </ion-list>
+  </div>
+
+</ion-content>
