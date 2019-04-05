@@ -40,6 +40,18 @@ export class ShowScore {
     scoreBatch6: number;
 }
 
+export class ShowScoreArea {
+    id: string;
+    province: string;
+    zone: string;
+    scoreBatch1: number;
+    scoreBatch2: number;
+    scoreBatch3: number;
+    scoreBatch4: number;
+    scoreBatch5: number;
+    scoreBatch6: number;
+}
+
 export class CompareScore {
     id: string;
     party: string;
