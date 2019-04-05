@@ -1,3 +1,111 @@
-<div>
-  home เด้อ
-</div>
+<ion-row padding-top>
+  <ion-col col-8>
+  </ion-col>
+  <ion-col>
+    <ion-segment [(ngModel)]="type" mode="ios" color="secondary" (ionChange)="setData()">
+      <ion-segment-button value="score">
+        <b>Score</b>
+      </ion-segment-button>
+      <ion-segment-button value="ratio">
+        <b>Ratio (%)</b>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-col>
+</ion-row>
+
+<ion-card padding-right color="primary">
+  <ion-row text-right align-items-center>
+    <ion-col col-4 text-center>
+      <h1>พรรค</h1>
+    </ion-col>
+    <ion-col>
+      <ion-row>
+        <ion-col col-12>
+          <h2><b>24/04</b></h2>
+        </ion-col>
+        <ion-col col-12>
+          17:45
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col>
+      <ion-row>
+        <ion-col col-12>
+          <h2><b>24/04</b></h2>
+        </ion-col>
+        <ion-col col-12>
+          22:33
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col>
+      <ion-row>
+        <ion-col col-12>
+          <h2><b>25/04</b></h2>
+        </ion-col>
+        <ion-col col-12>
+          07:59
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col>
+      <ion-row>
+        <ion-col col-12>
+          <h2><b>25/04</b></h2>
+        </ion-col>
+        <ion-col col-12>
+          09:52
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col>
+      <ion-row>
+        <ion-col col-12>
+          <h2><b>25/04</b></h2>
+        </ion-col>
+        <ion-col col-12>
+          11:11
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col>
+      <h2><b>28/04</b></h2>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+<ion-item *ngFor="let party of showScore;let i = index" padding-right>
+  <ion-row text-right>
+    <ion-col col-4 text-left>
+      {{ i+1 }}. {{ party.party }}
+    </ion-col>
+    <ion-col>
+      {{ party.scoreBatch1 | number:'1.0-2' }}
+    </ion-col>
+    <ion-col>
+      <ion-icon *ngIf="(party.scoreBatch1 < party.scoreBatch2)" name="md-arrow-dropup" color="secondary"></ion-icon>
+      <ion-icon *ngIf="(party.scoreBatch1 > party.scoreBatch2)" name="md-arrow-dropdown" color="danger"></ion-icon>
+      {{ party.scoreBatch2 | number:'1.0-2' }}
+    </ion-col>
+    <ion-col>
+      <ion-icon *ngIf="(party.scoreBatch2 < party.scoreBatch3)" name="md-arrow-dropup" color="secondary"></ion-icon>
+      <ion-icon *ngIf="(party.scoreBatch2 > party.scoreBatch3)" name="md-arrow-dropdown" color="danger"></ion-icon>
+      {{ party.scoreBatch3 | number:'1.0-2' }}
+    </ion-col>
+    <ion-col>
+      <ion-icon *ngIf="(party.scoreBatch3 < party.scoreBatch4)" name="md-arrow-dropup" color="secondary"></ion-icon>
+      <ion-icon *ngIf="(party.scoreBatch3 > party.scoreBatch4)" name="md-arrow-dropdown" color="danger"></ion-icon>
+      {{ party.scoreBatch4 | number:'1.0-2' }}
+    </ion-col>
+    <ion-col>
+      <ion-icon *ngIf="(party.scoreBatch4 < party.scoreBatch5)" name="md-arrow-dropup" color="secondary"></ion-icon>
+      <ion-icon *ngIf="(party.scoreBatch4 > party.scoreBatch5)" name="md-arrow-dropdown" color="danger"></ion-icon>
+      {{ party.scoreBatch5 | number:'1.0-2' }}
+    </ion-col>
+    <ion-col>
+      <ion-icon *ngIf="(party.scoreBatch5 < party.scoreBatch6)" name="md-arrow-dropup" color="secondary"></ion-icon>
+      <ion-icon *ngIf="(party.scoreBatch5 > party.scoreBatch6)" name="md-arrow-dropdown" color="danger"></ion-icon>
+      {{ party.scoreBatch6 | number:'1.0-2' }}
+    </ion-col>
+  </ion-row>
+</ion-item>
