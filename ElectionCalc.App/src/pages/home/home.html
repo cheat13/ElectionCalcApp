@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>
       Election Calculation 2019
     </ion-title>
@@ -9,15 +9,15 @@
 <ion-content padding>
 
   <div>
-    <ion-segment [(ngModel)]="features" mode="ios">
+    <ion-segment [(ngModel)]="features" mode="ios" color="danger">
       <ion-segment-button value="home">
-        Home
+        <b>HOME</b>
       </ion-segment-button>
       <ion-segment-button value="compare">
-        Compare
+        <b>COMPARE</b>
       </ion-segment-button>
       <ion-segment-button value="distribute">
-        Distribution
+        <b>DISTRIBUTION</b>
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -27,10 +27,10 @@
       <home></home>
     </ion-list>
     <ion-list *ngSwitchCase="'compare'">
-      <compare></compare>>
+      <compare></compare>
     </ion-list>
     <ion-list *ngSwitchCase="'distribute'">
-      <distribution></distribution>>
+      <distribution></distribution>
     </ion-list>
   </div>
 
