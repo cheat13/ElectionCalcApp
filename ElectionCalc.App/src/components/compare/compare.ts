@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CloudSyncProvider } from '../../providers/cloud-sync/cloud-sync';
 import { CompareScore } from '../../app/models';
+import { PopoverController } from 'ionic-angular';
+import { SortPopoverComponent } from '../sort-popover/sort-popover';
 
 /**
  * Generated class for the CompareComponent component.
@@ -20,12 +22,13 @@ export class CompareComponent {
   public compareScore: CompareScore[] = [];
   public compareScoreParty: CompareScore[] = [];
   public compareScorePartyRatio: CompareScore[] = [];
+  public total: CompareScore = new CompareScore();
 
-  constructor(private cloudSync: CloudSyncProvider) {
+  constructor(private cloudSync: CloudSyncProvider, public popoverCtrl: PopoverController) {
     console.log('Hello CompareComponent Component');
     this.type = 'score';
-    this.batch1st = "1";
-    this.batch2nd = "2";
+    this.batch1st = "2";
+    this.batch2nd = "3";
   }
 
   ngOnInit() {
@@ -51,10 +54,52 @@ export class CompareComponent {
 
   setData() {
     this.compareScore = (this.type == 'score') ? this.compareScoreParty : this.compareScorePartyRatio;
+    this.calcTotal();
   }
 
-  error(diff: number): boolean {
-    return diff < 0;
+  calcTotal() {
+    if (this.compareScore.length > 0) {
+      this.total.party = 'คะแนนรวม';
+      this.total.scoreBatch1st = (this.compareScore == this.compareScorePartyRatio) ? 100 : this.compareScore.map(it => it.scoreBatch1st).reduce((a, b) => a + b);
+      this.total.scoreBatch2nd = (this.compareScore == this.compareScorePartyRatio) ? 100 : this.compareScore.map(it => it.scoreBatch2nd).reduce((a, b) => a + b);
+      this.total.diff = (this.compareScore == this.compareScorePartyRatio) ? 0 : this.total.scoreBatch2nd - this.total.scoreBatch1st;
+      this.total.percentDiff = (this.compareScore == this.compareScorePartyRatio) ? 0 : (this.total.scoreBatch2nd - this.total.scoreBatch1st) / this.total.scoreBatch1st * 100;
+    }
   }
 
+  presentPopover(item: string) {
+    let popover = this.popoverCtrl.create(SortPopoverComponent, { isCompare: true });
+    popover.present({
+      ev: event
+    });
+    popover.onDidDismiss(data => {
+      switch (data) {
+        case 1:
+          (item == 'diff') ? this.compareScore.sort((a, b) => a.diff - b.diff)
+            : this.compareScore.sort((a, b) => a.percentDiff - b.percentDiff);
+          break;
+        case 2:
+          (item == 'diff') ? this.compareScore.sort((a, b) => b.diff - a.diff)
+            : this.compareScore.sort((a, b) => b.percentDiff - a.percentDiff);
+          break;
+        case 3:
+          this.compareScore = (this.type == 'score') ?
+            this.compareScoreParty.filter(it => it.diff < 0) :
+            this.compareScorePartyRatio.filter(it => it.diff < 0);
+          this.calcTotal();
+          break;
+        case 4:
+          this.compareScore = (this.type == 'score') ?
+            this.compareScoreParty.filter(it => it.diff > 0) :
+            this.compareScorePartyRatio.filter(it => it.diff > 0);
+          this.calcTotal();
+          break;
+        case 5:
+          this.setData();
+          break;
+        default:
+          break;
+      }
+    });
+  }
 }
