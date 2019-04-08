@@ -60,3 +60,13 @@ export class CompareScore {
     diff: number;
     percentDiff: number;
 }
+
+export class CompareScoreArea {
+    id: string;
+    province: string;
+    zone: string;
+    scoreBatch1st: number;
+    scoreBatch2nd: number;
+    diff: number;
+    percentDiff: number;
+}

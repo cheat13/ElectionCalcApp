@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ScoreElection, ScoreArea, ScoreParty, ShowScore, ShowScoreArea } from '../../app/models';
+import { ScoreElection, ScoreArea, ScoreParty, ShowScore, ShowScoreArea, CompareScoreArea } from '../../app/models';
 
 /*
   Generated class for the CloudSyncProvider provider.
@@ -52,6 +52,10 @@ export class CloudSyncProvider {
 
   public loadShowScoreArea(): Observable<any> {
     return this.http.get<ShowScoreArea[]>(this.baseUrl + 'GetShowScoreArea/');
+  }
+
+  public loadCompareScoreArea(batch1st: string, batch2nd: string): Observable<any> {
+    return this.http.get<CompareScoreArea[]>(this.baseUrl + 'GetCompareScoreArea/' + batch1st + '/' + batch2nd);
   }
 
 }
