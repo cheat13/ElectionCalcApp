@@ -1,4 +1,4 @@
-<ion-row padding-top>
+<!-- <ion-row padding-top>
   <ion-col col-8>
   </ion-col>
   <ion-col>
@@ -11,38 +11,39 @@
       </ion-segment-button>
     </ion-segment>
   </ion-col>
-</ion-row>
+</ion-row> -->
 
-<ion-item padding-top no-lines>
+<ion-item margin-top no-lines>
   <ion-row text-right>
-    <ion-col col-4 text-left>
-      <h1>{{ total.party }}</h1>
+    <ion-col col-3 text-left>
+      <h1>{{ totalScore.province }}</h1>
     </ion-col>
     <ion-col>
-      <h1>{{ total.scoreBatch1st | number:'1.0-2' }}</h1>
+      <h1>{{ totalScore.scoreBatch1st | number:'1.0-2' }}</h1>
     </ion-col>
     <ion-col>
       <h1>
-        <ion-icon *ngIf="(total.scoreBatch1st < total.scoreBatch2nd)" name="md-arrow-dropup" color="secondary">
+        <ion-icon *ngIf="(totalScore.scoreBatch1st < totalScore.scoreBatch2nd)" name="md-arrow-dropup"
+          color="secondary">
         </ion-icon>
-        <ion-icon *ngIf="(total.scoreBatch1st > total.scoreBatch2nd)" name="md-arrow-dropdown" color="danger">
+        <ion-icon *ngIf="(totalScore.scoreBatch1st > totalScore.scoreBatch2nd)" name="md-arrow-dropdown" color="danger">
         </ion-icon>
-        {{ total.scoreBatch2nd | number:'1.0-2' }}
+        {{ totalScore.scoreBatch2nd | number:'1.0-2' }}
       </h1>
     </ion-col>
-    <ion-col [class.upper]="total.diff > 0" [class.lower]="total.diff < 0">
-      <h1> {{ total.diff | number:'1.0-2' }}</h1>
+    <ion-col [class.upper]="totalScore.diff > 0" [class.lower]="totalScore.diff < 0">
+      <h1> {{ totalScore.diff | number:'1.0-2' }}</h1>
     </ion-col>
-    <ion-col [class.upper]="total.percentDiff > 0" [class.lower]="total.percentDiff < 0">
-      <h1>{{ total.percentDiff | number:'1.0-2' }}</h1>
+    <ion-col [class.upper]="totalScore.percentDiff > 0" [class.lower]="totalScore.percentDiff < 0">
+      <h1>{{ totalScore.percentDiff | number:'1.0-2' }}</h1>
     </ion-col>
   </ion-row>
 </ion-item>
 
 <ion-card padding-right color="primary">
   <ion-row text-right align-items-center>
-    <ion-col col-4 text-center>
-      <h1>พรรค</h1>
+    <ion-col col-3 text-center>
+      <h1>เขต</h1>
     </ion-col>
     <ion-col>
       <h1>
@@ -95,28 +96,28 @@
   </ion-row>
 </ion-card>
 
-<ion-item *ngFor="let party of compareScore; let i = index" padding-right>
+<ion-item *ngFor="let compare of listShowCompareScore; let i = index" padding-right>
   <ion-row text-right>
-    <ion-col col-4 text-left>
-      <h1>{{ i+1 }}. {{ party.party }}</h1>
+    <ion-col col-3 text-left>
+      <h1>{{ i+1 }}. {{ compare.province }} {{compare.zone}}</h1>
     </ion-col>
     <ion-col>
-      <h1>{{ party.scoreBatch1st | number:'1.0-2' }}</h1>
+      <h1>{{ compare.scoreBatch1st | number:'1.0-2' }}</h1>
     </ion-col>
     <ion-col>
       <h1>
-        <ion-icon *ngIf="(party.scoreBatch1st < party.scoreBatch2nd)" name="md-arrow-dropup" color="secondary">
+        <ion-icon *ngIf="(compare.scoreBatch1st < compare.scoreBatch2nd)" name="md-arrow-dropup" color="secondary">
         </ion-icon>
-        <ion-icon *ngIf="(party.scoreBatch1st > party.scoreBatch2nd)" name="md-arrow-dropdown" color="danger">
+        <ion-icon *ngIf="(compare.scoreBatch1st > compare.scoreBatch2nd)" name="md-arrow-dropdown" color="danger">
         </ion-icon>
-        {{ party.scoreBatch2nd | number:'1.0-2' }}
+        {{ compare.scoreBatch2nd | number:'1.0-2' }}
       </h1>
     </ion-col>
-    <ion-col [class.upper]="party.diff > 0" [class.lower]="party.diff < 0">
-      <h1> {{ party.diff | number:'1.0-2' }}</h1>
+    <ion-col [class.upper]="compare.diff > 0" [class.lower]="compare.diff < 0">
+      <h1> {{ compare.diff | number:'1.0-2' }}</h1>
     </ion-col>
-    <ion-col [class.upper]="party.percentDiff > 0" [class.lower]="party.percentDiff < 0">
-      <h1>{{ party.percentDiff | number:'1.0-2' }}</h1>
+    <ion-col [class.upper]="compare.percentDiff > 0" [class.lower]="compare.percentDiff < 0">
+      <h1>{{ compare.percentDiff | number:'1.0-2' }}</h1>
     </ion-col>
   </ion-row>
 </ion-item>
