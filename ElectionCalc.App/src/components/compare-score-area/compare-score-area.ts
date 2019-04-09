@@ -56,12 +56,12 @@ export class CompareScoreAreaComponent {
     popover.onDidDismiss(data => {
       switch (data) {
         case 1:
-          this.listShowCompareScore = (item == 'diff') ? this.listCompareScore.sort((a, b) => a.diff - b.diff)
-            : this.listCompareScore.sort((a, b) => a.percentDiff - b.percentDiff);
+           (item == 'diff') ? this.listShowCompareScore.sort((a, b) => a.diff - b.diff)
+            : this.listShowCompareScore.sort((a, b) => a.percentDiff - b.percentDiff);
           break;
         case 2:
-          this.listShowCompareScore = (item == 'diff') ? this.listCompareScore.sort((a, b) => b.diff - a.diff)
-            : this.listCompareScore.sort((a, b) => b.percentDiff - a.percentDiff);
+          (item == 'diff') ? this.listShowCompareScore.sort((a, b) => b.diff - a.diff)
+            : this.listShowCompareScore.sort((a, b) => b.percentDiff - a.percentDiff);
           break;
         case 3:
           this.listShowCompareScore = this.listCompareScore.filter(it => it.diff < 0);
