@@ -39,11 +39,11 @@ export class CompareScoreAreaComponent {
   }
 
   setData() {
-    if (this.listCompareScore.length > 0) {
+    if (this.listShowCompareScore.length > 0) {
       this.totalScore.province = "คะแนนรวม"
-      this.totalScore.scoreBatch1st = this.listCompareScore.map(it => it.scoreBatch1st).reduce((a, b) => a + b);
-      this.totalScore.scoreBatch2nd = this.listCompareScore.map(it => it.scoreBatch2nd).reduce((a, b) => a + b);
-      this.totalScore.diff = this.listCompareScore.map(it => it.diff).reduce((a, b) => a + b);
+      this.totalScore.scoreBatch1st = this.listShowCompareScore.map(it => it.scoreBatch1st).reduce((a, b) => a + b);
+      this.totalScore.scoreBatch2nd = this.listShowCompareScore.map(it => it.scoreBatch2nd).reduce((a, b) => a + b);
+      this.totalScore.diff = this.listShowCompareScore.map(it => it.diff).reduce((a, b) => a + b);
       this.totalScore.percentDiff = (this.totalScore.scoreBatch2nd - this.totalScore.scoreBatch1st) / this.totalScore.scoreBatch1st * 100;
     }
   }
